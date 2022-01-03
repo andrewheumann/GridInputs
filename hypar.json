@@ -1,0 +1,176 @@
+{
+  "$schema": "https://hypar.io/Schemas/Function.json",
+  "id": "02f976c9-f8ff-4ad1-a5e4-fc7c21a98b02",
+  "name": "Grid inputs",
+  "description": "The GridInputs function.",
+  "language": "C#",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "Grid 2d": {
+        "$ref": "https://prod-api.hypar.io/schemas/Grid2dInput.json",
+        "default": {
+          "U": {
+            "Curve": {
+              "Vertices": [
+                {
+                  "X": 0,
+                  "Y": 20,
+                  "Z": 0
+                },
+                {
+                  "X": 10,
+                  "Y": 20,
+                  "Z": 0
+                }
+              ]
+            },
+            "SplitPoints": []
+          },
+          "V": {
+            "Curve": {
+              "Vertices": [
+                {
+                  "X": 0,
+                  "Y": 20,
+                  "Z": 0
+                },
+                {
+                  "X": 0,
+                  "Y": 20,
+                  "Z": 30
+                }
+              ]
+            },
+            "SplitPoints": []
+          }
+        }
+      },
+      "Grid 1d": {
+        "$ref": "https://prod-api.hypar.io/schemas/Grid1dInput.json",
+        "default": {
+          "Curve": {
+            "Vertices": [
+              {
+                "X": 0,
+                "Y": 0,
+                "Z": 0
+              },
+              {
+                "X": 10,
+                "Y": 0,
+                "Z": 0
+              }
+            ]
+          },
+          "SplitPoints": [
+            {
+              "X": 2,
+              "Y": 0,
+              "Z": 0
+            },
+            {
+              "X": 4,
+              "Y": 0,
+              "Z": 0
+            },
+            {
+              "X": 6,
+              "Y": 0,
+              "Z": 0
+            }
+          ]
+        },
+        "$hyparCanEditGridCurve": true
+      },
+      "Other Grid": {
+        "$ref": "https://prod-api.hypar.io/schemas/Grid1dInput.json",
+        "$hyparCanEditGridCurve": false,
+        "default": {
+          "Curve": {
+            "Vertices": [
+              {
+                "X": 0,
+                "Y": 0,
+                "Z": 0
+              },
+              {
+                "X": 0,
+                "Y": 0,
+                "Z": 10
+              }
+            ]
+          },
+          "SplitPoints": [
+            {
+              "X": 0,
+              "Y": 0,
+              "Z": 2
+            },
+            {
+              "X": 0,
+              "Y": 0,
+              "Z": 4
+            },
+            {
+              "X": 0,
+              "Y": 0,
+              "Z": 6
+            }
+          ]
+        }
+      },
+      "Grid 1d with no default": {
+        "$ref": "https://prod-api.hypar.io/schemas/Grid1dInput.json",
+        "$hyparCanEditGridCurve": true
+      }
+    }
+  },
+  "overrides": {
+    "Grids": {
+      "context": "[*discriminator=Elements.GridAxisControl]",
+      "identity": {
+        "RoughPosition": {
+          "$ref": "https://hypar.io/Schemas/Geometry/Vector3.json"
+        }
+      },
+      "schema": {
+        "Grid": {
+          "$ref": "https://prod-api.hypar.io/schemas/Grid1dInput",
+          "$hyparCanEditGridCurve": false
+        }
+      }
+    },
+    "2d Grids": {
+      "context": "[*discriminator=Elements.GridAxisControl2d]",
+      "identity": {
+        "RoughPosition": {
+          "$ref": "https://hypar.io/Schemas/Geometry/Vector3.json"
+        }
+      },
+      "schema": {
+        "Grid": {
+          "$ref": "https://prod-api.hypar.io/schemas/Grid2dInput"
+        }
+      }
+    }
+  },
+  "outputs": [
+    {
+      "unit_type": "volume",
+      "name": "Volume",
+      "description": "The volume.",
+      "type": "number"
+    }
+  ],
+  "repository_url": "https://github.com/hypar-io/function",
+  "source_file_key": null,
+  "preview_image": null,
+  "thumbnail_id": null,
+  "element_types": [
+    "https://prod-api.hypar.io/schemas/Grid1dInput.json",
+    "https://prod-api.hypar.io/schemas/GridAxisControl.json",
+    "https://prod-api.hypar.io/schemas/Grid2dInput.json",
+    "https://prod-api.hypar.io/schemas/GridAxisControl2d.json"
+  ]
+}
